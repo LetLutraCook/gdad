@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+  <title>Join Club</title>
+  <style>
+    body {
+      padding: 12px;
+      font-family: Arial, sans-serif;
+    }
+
+    label, input, button {
+      margin: 2px;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <label for="yourName">1. What is your name?</label>
+    <input id="yourName" name="yourName" type="text">
+    <br>
+    <label for="bday">2. When is your birthday?</label>
+    <input id="bday" name="bday" type="date">
+    <br>
+    <label for="age">3. How old are you right now?</label>
+    <input id="age" name="age" type="range" min="5" max="100">
+    <br>
+    <label for="emailAddy">4. What is your email address?</label>
+    <input id="emailAddy" name="emailAddy" type="email">
+    <br>
+    <label for="favColor">5. What is your favorite color?</label>
+    <input id="favColor" name="favColor" type="color">
+    <br>
+    <label for="subscribe">6. Subscribe to our daily newsletter</label>
+    <input id="subscribe" name="subscribe" type="checkbox">
+
+    <button id="submit" onclick="alert('your data went nowhere');">Submit</button>
+  </form>
+</body>
+</html>
