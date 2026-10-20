@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yes Or No</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        button {
+            font-size: 4em;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 3px;
+            background-color: #ccddff;
+            border: 2px black solid;
+            border-radius: 10px;
+            color: black;
+        }
+
+        button:hover {
+            background-color: #aabbdd;
+            color: #222222;
+        }
+
+        button:active {
+            background-color: #7297e2;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <button id="yes" onclick="playSound('happy')">Yes</button>
+    <button id="no" onclick="playSound('sad')">No</button>
+
+    <script>
+        let happySound = new Audio("placeholder.mp3");
+        let sadSound = new Audio("placeholder.mp3");
+
+        function playSound(type) {
+            if (type == 'happy') {
+                happySound.play();
+            } else if (type == 'sad') {
+                sadSound.play();
+            } else {
+                alert("That's not a sound!");
+            }
+        }
+    </script>
+</body>
+</html>
