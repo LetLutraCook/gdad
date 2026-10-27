@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS Form Game</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container pt-5">
+            <h1>JS Form Game</h1>
+
+            <br>
+
+            <form>
+                <p id="question1Paragraph" class="form-label mb-3">1) How much wood would a woodchuck chuck if a woodchuck could chuck wood?</p>
+
+                <div class="mb-5 btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <!-- question 1 -->
+                    <label for="woodchuck1" class="btn-check btn-outline theme-primary">
+                        <input type="radio" id="woodchuck1" name="woodchuck" value="1" onclick="checkAnswer('1');" autocomplete="off">
+                        Lots of wood
+                    </label>
+                    <label for="woodchuck2" class="btn-check btn-outline theme-primary">
+                        <input type="radio" id="woodchuck2" name="woodchuck" value="2" onclick="checkAnswer('1');" autocomplete="off">
+                        Maybe a bit of wood
+                    </label>
+
+                    <label for="woodchuck3" class="btn-check btn-outline theme-primary">
+                        <input type="radio" id="woodchuck3" name="woodchuck" value="3" onclick="checkAnswer('1');" autocomplete="off">
+                        No wood at all
+                    </label>
+
+                    <label for="woodchuck4" class="btn-check btn-outline theme-primary">
+                        <input type="radio" id="woodchuck4" name="woodchuck"  value="4" onclick="checkAnswer('1');" autocomplete="off">
+                        Unlimited wood, but no wood
+                    </label>
+
+                </div>
+
+                <br><br>
+
+                <div class="mb-5">
+                    <!-- question 2 -->
+                    <p id="question2Paragraph" class="form-label">2) Unlimited bacon but no games, or unlimited games but no games?</p>
+                    <div class="form-field">
+                        <select id="baconDropDown" onchange="checkAnswer('2');" name="bacon" class="form-control">
+                            <option selected disabled>-- Select an option --</option>
+                            <option value="bacon1">Unlimited bacon but no games</option>
+                            <option value="bacon2">Unlimited games but no games</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="mb-5">
+                    <!-- question 3 -->
+                    <p id="question3Paragraph" class="form-label">3) What portable console was released in 2005?</p>
+                    <input type="text" id="consoleText" name="console" class="form-control form-control-lg">
+                    <br>
+                    <button type="button" class="theme-secondary btn-solid btn-styled" onclick="checkAnswer('3');">Check answer 3</button>
+                </div>
+
+                <br>
+
+                <div class="mb-5">
+                    <!-- question 4 -->
+                    <p id="question4Paragraph" class="form-label">4) Which of these items are edible?</p>
+                    <div class="form-field">
+                        <input type="checkbox" id="edible1" name="edibleItems" class="check">
+                        <label for="edible1">Banana</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="checkbox" id="edible2" name="edibleItems" class="check">
+                        <label for="edible2">Table</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="checkbox" id="edible3" name="edibleItems" class="check">
+                        <label for="edible3">Apple</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="checkbox" id="edible4" name="edibleItems" class="check">
+                        <label for="edible4">Dying nuetron star</label>
+                    </div>
+                    <br>
+                    <button type="button" class="theme-secondary btn-solid btn-styled" onclick="checkAnswer('4');">Check answer 4</button>
+                </div>
+            </form>
+        </div>
+
+        <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+        <script>
+            function checkAnswer(questionNum) {
+                if (questionNum == '1') {
+                    if (document.querySelector('input[name="woodchuck"]:checked').value == "4") {
+                        showAccuracy('correct', '1');
+                    } else {
+                        showAccuracy('incorrect', '1');
+                    }
+                }
+                if (questionNum == '2') {
+                    if (baconDropDown.value == "bacon2") {
+                        showAccuracy('correct', '2');
+                    } else {
+                        showAccuracy('incorrect', '2');
+                    }
+                }
+                if (questionNum == '3') {
+                    if (["ds", "nds", "nintendo ds"].includes(consoleText.value.toLowerCase().trim())) {
+                        showAccuracy('correct', '3');
+                    } else {
+                        showAccuracy('incorrect', '3');
+                    }
+                }
+                if (questionNum == '4') {
+                    if (edible1.checked && !edible2.checked && edible3.checked && !edible4.checked) {
+                        showAccuracy('correct', '4');
+                    } else {
+                        showAccuracy('incorrect', '4');
+                    }
+                }
+            }
+
+            function showAccuracy(correctness, questionNum) {
+                const questionP = document.getElementById(`question${questionNum}Paragraph`);
+
+                if (correctness == 'correct') {
+                    questionP.style.background = '#22ce22';
+                } else {
+                    questionP.style.background = '#ce2222';
+                }
+
+                if(questionP.activeTimeout) {
+                    clearTimeout(questionP.activeTimeout);
+                }
+
+                questionP.activeTimeout = setTimeout(() => {
+                    questionP.style.background = 'rgba(0, 0, 0, 0)';
+                }, 1500)
+            }
+        </script>
+    </body>
+</html>
